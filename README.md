@@ -1,3 +1,3 @@
-# SED1
+# Toodie
 
-a flutter flow app
+# A game for children to learn english in an entertaining way!
