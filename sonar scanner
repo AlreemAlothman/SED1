@@ -1,0 +1,6 @@
+
+sonar-scanner.bat \
+  -D"sonar.organization=matchwords1" \
+  -D"sonar.projectKey=Lam20010_SED1" \
+  -D"sonar.sources=." \
+  -D"sonar.host.url=https://sonarcloud.io"
