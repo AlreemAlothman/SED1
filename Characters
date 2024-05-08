@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'character_selection_model.dart';
+
 export 'character_selection_model.dart';
 
 class CharacterSelectionWidget extends StatefulWidget {
