@@ -1,1 +1,59 @@
-mcb sja 
+name: Usability Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  usability-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.3.0'
+        
+    - name: Install dependencies
+      run: flutter pub get
+      
+    # Step 1: Run UI tests with Gherkin
+    - name: Run Gherkin UI tests
+      run: |
+        flutter pub run gherkin
+        
+    # Step 2: Perform heuristic evaluation
+    - name: Heuristic Evaluation
+      run: |
+        # Install heuristic evaluation tool
+        pip install heuristicpy
+        # Run heuristic evaluation on the app
+        heuristicpy evaluate ./lib
+        
+    # Step 3: Conduct user surveys
+    - name: User Surveys
+      run: |
+        # Install survey tool (e.g., SurveyMonkey)
+        pip install surveymonkey-api
+        # Conduct user surveys and analyze the results
+        python survey_script.py
+        
+    # Step 4: Generate usability report
+    - name: Generate Usability Report
+      run: |
+        # Install reporting tool (e.g., ReportLab)
+        pip install reportlab
+        # Generate a comprehensive usability report
+        python report_generator.py
+        
+    # Step 5: Upload usability report as artifact
+    - name: Upload Usability Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: usability-report
+        path: usability_report.pdf
